@@ -3,6 +3,7 @@ package edu.kh.project.member.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,13 +67,27 @@ public class MemberController {
 	}
 	
 	// @RequestParam 생략을 이용해 짧게 코드 작성 가능
-	@RequestMapping(value="/member/login", method = RequestMethod.POST)
+//	@RequestMapping(value="/member/login", method = RequestMethod.POST)
 	public String login(String inputEmail, String inputPw) {
 		
 		System.out.println(inputEmail);
 		System.out.println(inputPw);
 		
 		return "redirect:/";
+	}
+	
+	// ==@PostMapping(value="/member/login", method=RequestMethod.POST)
+	//@PostMapping("/member/login") //POST방식의 /member/login 요청을 연결
+	//@GetMapping("/member/login") // GET방식의 /member/login 요청을 연결
+	
+	// 3. @ModelAttribute 어노테이션 이용
+	// [작성법]
+	// @ModelAttribute VO 타입 매개변수명
+	// ->파라티머의 name속성 값이 지정된 VO의 필드명과 같다면 해당 VO객체의 필드에 파라미터를 세팅
+	
+	@PostMapping("/member/login")
+	public String login() {
+		return null;
 	}
 	
 	

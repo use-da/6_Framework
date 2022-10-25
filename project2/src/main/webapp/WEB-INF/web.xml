@@ -33,7 +33,7 @@
 		<servlet-name>appServlet</servlet-name>
 		
 		<!-- 최상위 주소 이하 모든 요청 주소 -->
-		<url-pattern>/</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
