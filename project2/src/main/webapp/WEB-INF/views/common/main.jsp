@@ -49,7 +49,13 @@
                 <c:choose>
                     <%-- 로그인 X인 경우 --%>
                     <c:when test="${empty sessionScope.loginMember}">
-                        <form action="/member/login" name="login-frm" method="POST">
+                        <form action="/member/login" name="login-frm" method="POST"
+                            onsubmit="return loginValidate();">
+                            <%-- form태그의 submit 이벤트를 취소시키는 방법1
+                                인라인 이벤트 모델의 결과로 false를 반환하면 submit 이벤트가 취소됨
+
+
+                            --%>
                             <!--아이디, 비번, 로그인 버튼-->
                             <fieldset id="id-pw-area">
                                 <section>
@@ -70,7 +76,7 @@
                                 <%--c:set -> page scope == if문 나가도 사용--%>
                             </c:if>
                             <label>
-                                <input type="checkbox" name="saveId" ${temp}>아이디 저장
+                                <input type="checkbox" id="saveId" name="saveId" ${temp}>아이디 저장
                             </label><!--label태그 내부에 input태그를 작성하면 자동 연결된다-->
                             <!-- 회원가입/ ID / PW 찾기-->
                             <article id="signUp-find-area">
@@ -104,6 +110,6 @@
     
     <!-- footer.jsp추가(포함) -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-
+    <script src="/resources/js/main.js"></script>
 </body>
 </html>
