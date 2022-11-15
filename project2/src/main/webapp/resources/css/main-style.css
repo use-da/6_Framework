@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 
     /*HTML요소가 가진 고유 값을 없앰*/
@@ -11,12 +11,13 @@ div, span, main, header, footer, nav, aside, section, article{
     border: 1px solid black;
 }*/
 
-main{
+main {
     width: 1140px;
-    margin: auto; /*가로 가운데 정렬*/
+    margin: auto;
+    /*가로 가운데 정렬*/
 }
 
-footer{
+footer {
     height: 200px;
     background-color: #a3add342;
 
@@ -26,27 +27,28 @@ footer{
     align-items: center;
 }
 
-footer p{
+footer p {
     font-weight: bold;
     margin: 16px 0;
 }
 
-footer > article > * {
+footer>article>* {
     font-size: 14px;
 }
 
-footer a{
+footer a {
     text-decoration: none;
     color: #000;
 }
 
-footer span{
-    padding : 0 10px;
+footer span {
+    padding: 0 10px;
 }
 
-header{
+header {
     height: 200px;
-    display:flex; /*내부요소 margin이 사라져 한 줄(기본값 row) 배치*/
+    display: flex;
+    /*내부요소 margin이 사라져 한 줄(기본값 row) 배치*/
 }
 
 /*
@@ -55,55 +57,71 @@ display : flex; 설정 시 지정되는 align-items : stretch; 속성을 이용�
 cross-axis 방향으로 item의 높이를 늘려서 부모의 높이와 같게 만듬
 */
 
-header > section:nth-child(1){ flex-basis: 15%;}
+header>section:nth-child(1) {
+    flex-basis: 15%;
+}
+
 /*선택자가 중복 작성되어도 오류X*/
-header > section:nth-child(1){
-    /*로고 정중앙으로 보내기*/ 
+header>section:nth-child(1) {
+    /*로고 정중앙으로 보내기*/
     display: flex;
     justify-content: center;
     align-items: center;
 }
-header > section:nth-child(2){ 
+
+header>section:nth-child(2) {
     flex-basis: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-header > section:nth-child(3){ flex-basis: 15%;}
 
-#home-logo{
+header>section:nth-child(3) {
+    flex-basis: 15%;
+}
+
+#home-logo {
     width: 120px;
 }
+
 /*검색창*/
-.search-area{width:500px;}
-.search-area fieldset{
-    border:2px solid #455ba8;
+.search-area {
+    width: 500px;
+}
+
+.search-area fieldset {
+    border: 2px solid #455ba8;
     padding: 2px;
     margin: 0;
-    border-radius:5px;
+    border-radius: 5px;
     display: flex;
 }
+
 /*검색어 입력 상자*/
-#query{
-    border:0; /*== border:none;*/
+#query {
+    border: 0;
+    /*== border:none;*/
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
-    outline: none ; /*input요소가 포커스 일 때 바깥선*/
-    width:92%;
+    outline: none;
+    /*input요소가 포커스 일 때 바깥선*/
+    width: 92%;
 }
+
 /*검색 버튼*/
-#search-btn{
+#search-btn {
     width: 8%;
-    border:none;
+    border: none;
     background-color: white;
-    font-size: 1.2em; /*icon은 특수문자 취급되어 글자, 글꼴 스타일 적용 가능*/
+    font-size: 1.2em;
+    /*icon은 특수문자 취급되어 글자, 글꼴 스타일 적용 가능*/
     color: #455ba8;
     cursor: pointer;
 }
 
 
-nav{
+nav {
     height: 50px;
     border-bottom: 2px solid black;
     background-color: white;
@@ -111,9 +129,11 @@ nav{
     position: sticky;
     /*화면 밖으로 요소가 벗어났을 때 지정된 위치에 고정*/
     top: 0;
-    
+    z-index: 100;
+
 }
-nav > ul{
+
+nav>ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -122,11 +142,12 @@ nav > ul{
     height: 100%;
 }
 
-nav li{
-    width:150px; /*==flex-basis: 150px;*/
+nav li {
+    width: 150px;
+    /*==flex-basis: 150px;*/
 }
 
-nav li > a{
+nav li>a {
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
@@ -139,75 +160,89 @@ nav li > a{
     text-align: center;
 }
 
-nav li > a:hover{
+nav li>a:hover {
     background-color: #455ba8;
     color: white;
 }
 
 
-section.content{
+section.content {
     height: 800px;
     display: flex;
 }
 
-.content-1{ flex-basis: 70%;}
-.content-2{ flex-basis: 30%;}
+.content-1 {
+    flex-basis: 70%;
+}
 
-form[name='login-frm']{
+.content-2 {
+    flex-basis: 30%;
+}
+
+form[name='login-frm'] {
     height: 150px;
     padding: 10px;
     margin-top: 10px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center; /*중심축 가운데 정렬*/
+    justify-content: center;
+    /*중심축 가운데 정렬*/
 }
 
-#id-pw-area{
+#id-pw-area {
     margin: 0;
     padding: 0;
     border: 1px solid #ddd;
     display: flex;
-    flex-basis: 60%; /*form태그 내부 요소들의 너비를 60%로 설정*/
+    flex-basis: 60%;
+    /*form태그 내부 요소들의 너비를 60%로 설정*/
 }
 
-#id-pw-area >section:first-child{
+#id-pw-area>section:first-child {
     flex-basis: 75%;
     display: flex;
     flex-direction: column;
-}/*id-pw영역*/
+}
 
-#id-pw-area >section:first-child > input{
+/*id-pw영역*/
+
+#id-pw-area>section:first-child>input {
     flex-basis: 50%;
     border: none;
     outline: none;
     padding: 5px;
     border-right: 1px solid #ddd;
-}/*id영역*/
+}
 
-#id-pw-area >section:first-child > input:first-child{
+/*id영역*/
+
+#id-pw-area>section:first-child>input:first-child {
     border-bottom: 1px solid #ddd;
 }
 
 /*id, pw input태그에 focus될 때*/
-#id-pw-area >section:first-child > input:focus{
+#id-pw-area>section:first-child>input:focus {
     border: 2px solid #455ba8;
 }
 
-#id-pw-area >section:last-child{
+#id-pw-area>section:last-child {
     flex-basis: 25%;
-}/*로그인 버튼 영역*/
+}
 
-#id-pw-area >section:last-child > button{
+/*로그인 버튼 영역*/
+
+#id-pw-area>section:last-child>button {
     width: 100%;
-    height: 100%; /*==display:flex*/
+    height: 100%;
+    /*==display:flex*/
     border: none;
     outline: none;
     background-color: white;
     cursor: pointer;
 }
 
-#id-pw-area >section:last-child > button:hover{
+#id-pw-area>section:last-child>button:hover {
     background-color: #455ba8;
     color: white;
     border-radius: 5px;
@@ -215,72 +250,77 @@ form[name='login-frm']{
 }
 
 /*회원가입, id,pw 찾기 영역*/
-#signUp-find-area{
+#signUp-find-area {
     margin-top: 10px;
     padding-left: 5px;
 }
 
-#signUp-find-area > a{
+#signUp-find-area>a {
     text-decoration: none;
     color: black;
     font-size: 14px;
 }
 
-#signUp-find-area > span{
+#signUp-find-area>span {
     padding: 0 10px;
 }
 
 
-form[name='login-frm'] > label{
+form[name='login-frm']>label {
     margin-top: 5px;
     font-size: 14px;
-} /*아이디 저장 영역*/
+}
+
+/*아이디 저장 영역*/
 
 
 /********************************************************************************/
 
 /*헤더 오른쪽 상단 메뉴*/
-header{position : relative;}
+header {
+    position: relative;
+}
 
-#header-top-menu{
+#header-top-menu {
     position: absolute;
     top: 5px;
     right: 0;
 }
 
-#header-top-menu a{
-    text-decoration: none;  
+#header-top-menu a {
+    text-decoration: none;
     color: black;
 }
 
-#header-top-menu *{
+#header-top-menu * {
     font-size: 15px;
     font-weight: bold;
 }
 
 /*메뉴 on/off 체크박스*/
-#header-menu-toggle{
+#header-menu-toggle {
     display: none;
 }
 
 /*label 태그 중 for 속성값이 header-menu-toggle인 요소*/
-label[for='header-menu-toggle']{
-    cursor: pointer;;
+label[for='header-menu-toggle'] {
+    cursor: pointer;
+    ;
 }
 
-label[for='header-menu-toggle']:hover{
+label[for='header-menu-toggle']:hover {
     text-decoration: underline;
 }
 
-#header-menu-toggle + div{
+#header-menu-toggle+div {
     display: none;
 }
 
-#header-menu-toggle:checked + div{
+#header-menu-toggle:checked+div {
     display: block;
 }
 
-#header-menu{
+#header-menu {
     position: absolute;
     z-index: 500;
     right: 0;
@@ -290,24 +330,24 @@ label[for='header-menu-toggle']:hover{
     border: 1px solid black;
 }
 
-#header-menu > a{
+#header-menu>a {
     display: flex;
     height: 50%;
     justify-content: center;
     align-items: center;
 }
 
-#header-menu > a:first-child{
+#header-menu>a:first-child {
     border-bottom: 1px solid #ccc;
 }
 
-#header-menu > a:hover{
+#header-menu>a:hover {
     background-color: #455ba890;
 }
 
 /***************************************************************/
 /*로그인 성공 시 화면*/
-.login-area{
+.login-area {
     height: 120px;
     padding: 30px 10px;
     margin: 10px 0;
@@ -318,13 +358,14 @@ label[for='header-menu-toggle']:hover{
     align-items: center;
 }
 
-#member-profile{
+#member-profile {
     width: 64px;
     height: 64px;
-    border-radius: 50%; /*원형*/
+    border-radius: 50%;
+    /*원형*/
 }
 
-.login-area > a{
+.login-area>a {
     display: block;
     width: 70px;
     height: 70px;
@@ -333,51 +374,64 @@ label[for='header-menu-toggle']:hover{
 }
 
 /*회원 정보 + 로그아웃 버튼*/
-.my-info{
-    width:100%;
+.my-info {
+    width: 100%;
     height: 100%;
     margin-left: 20px;
 }
 
-.my-info > div{
+.my-info>div {
     display: flex;
     justify-content: space-between;
 }
 
-.my-info a{
+.my-info a {
     text-decoration: none;
 }
 
 /*닉네임*/
-#nickname{
-    color:black;
+#nickname {
+    color: black;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: -3px;
 }
 
 /*로그아웃 버튼*/
-#logout-btn{
+#logout-btn {
     cursor: pointer;
-    color:gray;
+    color: gray;
     font-size: 14px;
     font-weight: bold;
-    padding:3px 5px;
+    padding: 3px 5px;
     border: 2px solid gray;
     border-radius: 10px;
 }
 
-#logout-btn:hover{
+#logout-btn:hover {
     background-color: gray;
     color: white;
 }
 
-#logout-btn:active{
+#logout-btn:active {
     transform: scale(0.9);
 }
 
-.my-info > p{
+.my-info>p {
     margin: 0;
     color: gray;
 
+}
+
+#content-1-2 {
+    width: 300px;
+    margin: 50px auto;
+}
+
+.secession {
+    background-color: #ccc;
+}
+
+.secession>td:first-of-type {
+    text-decoration: line-through;
 }

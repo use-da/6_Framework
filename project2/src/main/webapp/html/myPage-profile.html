@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +9,10 @@
     <link rel="stylesheet" href="../resources/css/main-style.css">
     <link rel="stylesheet" href="../resources/css/myPage-style.css">
 </head>
+
 <body>
     <main>
-    header.jsp include
+        header.jsp include
 
         <section class="myPage-content">
             <section class="left-side">
@@ -28,15 +30,18 @@
                 <span class="myPage-subtitle">
                     프로필 이미지를 변경할 수 있습니다.
                 </span>
+
                 <form action="#" method="post" name="myPage-frm">
+
                     <div class="profile-image-area">
                         <img id="profile-image" src="../resources/images/user.png" alt="프로필 이미지">
-                        <span id="delete-image">x</span>
                     </div>
+                    <span id="delete-image">&times;</span>
+
                     <div class="profile-btn-area">
                         <label for="image-input">이미지 선택</label>
                         <input type="file" id="image-input" name="profile-image" accept="image/*">
-                    <!--accept 속성 : 업로드파일의 타입을(확장자) 제한 -->
+                        <!--accept 속성 : 업로드파일의 타입을(확장자) 제한 -->
                         <button>변경하기</button>
                     </div>
                     <div class="myPage-row">
@@ -46,8 +51,8 @@
                     <div class="myPage-row">
                         <label>가입일</label>
                         <span>2022년 10월 27일 10시 39분 12초</span>
-                    </div>   
-                    
+                    </div>
+
                 </form>
 
             </section>
@@ -58,4 +63,5 @@
     footer.jsp include
     <!-- 다음 주소 api 추가-->
 </body>
+
 </html>

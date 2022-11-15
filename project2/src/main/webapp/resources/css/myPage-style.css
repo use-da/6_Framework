@@ -11,30 +11,30 @@
 
 /*회원 페이지 전체를 감싸고 있는 요소*/
 
-.myPage-content{
+.myPage-content {
     display: flex;
     width: 1000px;
     min-height: 700px;
     margin: 50px auto;
 }
 
-.left-side{
+.left-side {
     width: 25%;
     border-right: 2px solid #ddd;
 }
 
-.list-group{
+.list-group {
     width: 100%;
     list-style: none;
     padding-right: 20px;
 }
 
-.list-group >li{
+.list-group>li {
     height: 50px;
     font-size: 18px;
 }
 
-.list-group >li >a{
+.list-group>li>a {
     color: black;
     text-decoration: none;
 
@@ -43,58 +43,59 @@
     align-items: center;
     justify-content: center;
 
-    border-bottom : 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
 }
 
-.list-group >li >a:hover{
+.list-group>li>a:hover {
     background-color: #ccc;
 }
 
 /********************************/
 
-.myPage-main{
+.myPage-main {
     width: 70%;
     padding: 0 50px;
 }
 
-.myPage-title{
+.myPage-title {
     margin-bottom: 10px;
     font-size: 30px;
 }
 
-.myPage-subtitle{
+.myPage-subtitle {
     display: block;
     margin-bottom: 30px;
     font-size: 14px;
     letter-spacing: -1px;
 }
 
-.myPage-row{
+.myPage-row {
     margin-top: 20px;
     width: 500px;
     height: 50px;
 
     display: flex;
     align-items: center;
-    border-bottom : 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
 }
 
-.myPage-row > *{ /*myPage-row의 자식요소들에게 적용*/
+.myPage-row>* {
+    /*myPage-row의 자식요소들에게 적용*/
     font-size: 18px;
     font-weight: bold;
 }
 
-.myPage-row > label{
+.myPage-row>label {
     width: 30%;
-    color:#455ba8;
+    color: #455ba8;
 }
 
-.myPage-row > span{
+.myPage-row>span {
     width: 70%;
-    color:#455ba8;
+    color: #455ba8;
 }
 
-.myPage-row > input{
+.myPage-row>input {
     width: 100%;
     height: 100%;
     border: none;
@@ -102,9 +103,9 @@
     font-weight: normal;
 }
 
-.myPage-submit{
+.myPage-submit {
     width: 100%;
-    padding:10px;
+    padding: 10px;
     margin: 50px 0;
 
     border: none;
@@ -115,7 +116,7 @@
     cursor: pointer;
 }
 
-form[name='myPage-frm']{
+form[name='myPage-frm'] {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,22 +124,22 @@ form[name='myPage-frm']{
 }
 
 /*내부 input요소 focus시*/
-.myPage-row:focus-within{
-    border-bottom-color : #455ba8;
+.myPage-row:focus-within {
+    border-bottom-color: #455ba8;
 }
 
 /*************************************************/
 
-.info-title{
+.info-title {
     border: none;
 }
 
-.info-address{
+.info-address {
     margin: 0;
 }
 
-.info-address > button{
-    width:30%;
+.info-address>button {
+    width: 30%;
     height: 70%;
 
     font-size: 14px;
@@ -151,13 +152,13 @@ form[name='myPage-frm']{
 
 /***********************비밀번호 변경************************/
 
-.myPage-row >input[type='password']{
-    width: 70%;  
+.myPage-row>input[type='password'] {
+    width: 70%;
 }
 
 /**********************회원탈퇴 약관************************/
 
-.secession-terms{
+.secession-terms {
     width: 500px;
     height: 300px;
     border: 1px solid black;
@@ -169,31 +170,39 @@ form[name='myPage-frm']{
 }
 
 /**********************프로필 화면 ************************/
-.profile-image-area{
+.profile-image-area {
     width: 150px;
     height: 150px;
     border: 3px solid #ccc;
     border-radius: 50%;
 
     position: relative;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+form[name='myPage-frm'] {
+    position: relative;
+}
+
+
 /**삭제버튼**/
-#delete-image{
+#delete-image {
     position: absolute;
-    top:0px;
-    right: 0px;
+    top: -2px;
+    right: 200px;
     cursor: pointer;
 }
 
-#profile-image{
-    width: 100%;
+#profile-image {
     height: 100%;
-    border-radius: 50%;
 }
 
 /**이미지 버튼 영역**/
-.profile-btn-area{
+.profile-btn-area {
     width: 230px;
     margin: 20px 0;
 
@@ -202,21 +211,23 @@ form[name='myPage-frm']{
     align-items: center;
 }
 
-.profile-btn-area > *{
+.profile-btn-area>* {
     width: 110px;
     height: 33px;
     padding: 5px 10px;
 
-    font-size: 14px;   
+    font-size: 14px;
     border: 1px solid black;
     background-color: white;
     cursor: pointer;
     text-align: center;
 }
 
-#image-input{display: none;}
+#image-input {
+    display: none;
+}
 
-.profile-btn-area > button{
+.profile-btn-area>button {
     background-color: #455ba8;
     color: white;
     margin-left: 2px;

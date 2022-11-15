@@ -39,6 +39,7 @@
 	    <select> : 필수
   		<insert> / <update> / <delete> : 선택 (Type Handler가 알아서 판단)
    -->
+   
   <!-- 비밀번호 변경  (parameterType="map")-->
   <update id="changePw">
   	UPDATE MEMBER SET 
@@ -50,6 +51,12 @@
   <update id="memberDelete">
   	UPDATE MEMBER SET
   	MEMBER_DEL_FL = 'Y'
+  	WHERE MEMBER_NO = #{memberNo}
+  </update>
+  
+  <update id="updateProfile" parameterType="Member">
+  	UPDATE MEMBER SET
+  	PROFILE_IMG = #{profileImage}
   	WHERE MEMBER_NO = #{memberNo}
   </update>
   

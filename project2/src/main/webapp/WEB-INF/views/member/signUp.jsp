@@ -35,7 +35,7 @@
                     placeholder="아이디(이메일)" maxlength="30" autocomplete="off" required
                     value="${tempMember.memberEmail}">
                     
-                    <button type="button">인증번호 받기</button>
+                    <button id="sendAuthKeyBtn" type="button">인증번호 받기</button>
                 </div>
                 <span class="signUp-message" id="emailMessage">메일을 받을 수 있는 이메일을 입력해주세요.</span>
 
@@ -47,12 +47,12 @@
                 </label>
 
                 <div class="signUp-input-area">
-                    <input type="text" name="emailCheck" id="emailCheck" 
+                    <input type="text" name="authKey" id="authKey" 
                     placeholder="인증번호 입력" maxlength="6" autocomplete="off" required>
                     
-                    <button type="button">인증하기</button>
+                    <button id="checkAuthKeyBtn" type="button">인증하기</button>
                 </div>
-                <span class="signUp-message " >인증되었습니다.</span>
+                <span id="authKeyMessage" class="signUp-message" ></span>
                                 <!-- 인증번호가 일치하지 않습니다 -->
                 
 
@@ -71,7 +71,6 @@
                 </div>
 
                 <span class="signUp-message" id="pwMessage">비밀번호가 일치하지 않습니다.</span>
-
 
                 <!-- 닉네임 입력 -->
                 <label for="memberNickname">
@@ -159,6 +158,10 @@
         }
     </script>
 
+    <!--jQuery 라이브러리(.js 파일) 추가 (CDN방식) (회사에선 속도문제로 다운로드해서 폴더에 넣는다)-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
     <script src="/resources/js/member/signUp.js"></script>
 </body>
 </html>

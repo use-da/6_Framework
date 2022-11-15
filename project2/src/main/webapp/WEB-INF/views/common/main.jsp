@@ -42,7 +42,31 @@
 
         <section class="content">
             <section class="content-1">
-                ${loginMember}
+                <div>
+                    <h3>이메일로 회원정보 조회(AJAX)</h3>
+                    이메일 : <input type="text" id="inputEmail">
+                    <button id="selectEmail">조회</button>
+                </div>
+                <div id="content-1-2">
+                    <h3>10초마다 모든 회원 정보 조회(AJAX)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>회원번호</th>
+                                <th>이메일</th>
+                                <th>탈퇴여부</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>회원 수</th>
+                                <th colspan="2" id="memberCount"></th>
+                            </tr>
+                    </table>
+                </div>
             </section>
             <section class="content-2">
                 <%-- 로그인 여부에 따라 출력 화면 변경--%>
@@ -53,8 +77,6 @@
                             onsubmit="return loginValidate();">
                             <%-- form태그의 submit 이벤트를 취소시키는 방법1
                                 인라인 이벤트 모델의 결과로 false를 반환하면 submit 이벤트가 취소됨
-
-
                             --%>
                             <!--아이디, 비번, 로그인 버튼-->
                             <fieldset id="id-pw-area">
@@ -90,8 +112,13 @@
                     <c:otherwise>
                         <article class="login-area">
                             <!-- 회원프로필 이미지-->
-                            <a href="#">
-                                <img id="member-profile" src="/resources/images/user.png">
+                            <a href="/member/myPage/profile">
+                                <c:if test="${empty loginMember.profileImage}">
+                                    <img id="member-profile" src="/resources/images/user.png" alt="프로필 이미지">
+                                </c:if>
+                                <c:if test="${not empty loginMember.profileImage}">
+                                    <img id="member-profile" src=${loginMember.profileImage} alt="프로필 이미지">
+                                </c:if>
                             </a>
                             <!-- 회원 닉네임, 로그아웃-->
                             <div class="my-info">
@@ -110,6 +137,11 @@
     
     <!-- footer.jsp추가(포함) -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    <!--jQuery 라이브러리(.js 파일) 추가 (CDN방식) (회사에선 속도문제로 다운로드해서 폴더에 넣는다)-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
     <script src="/resources/js/main.js"></script>
+
 </body>
 </html>

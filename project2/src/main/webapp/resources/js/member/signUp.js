@@ -7,7 +7,8 @@ const checkObj = {
     "memberPw": false,
     "memberPwConfirm": false,
     "memberNickname": false,
-    "memberTel": false
+    "memberTel": false,
+    "authKey": false
 }
 
 //회원 가입 양식이 제출 되었을 때
@@ -29,6 +30,8 @@ document.getElementById("signUp-frm").addEventListener("submit", function (event
                 case "memberPwConfirm": str = "비밀번호 확인이 유효하지 않습니다."; break;
                 case "memberNickname": str = "닉네임이 유효하지 않습니다."; break;
                 case "memberTel": str = "전화번호가 유효하지 않습니다."; break;
+                case "authKey": str = "인증이 완료되지 않았습니다."; break;
+
             }
             //대화상자 출력
             alert(str);
@@ -65,12 +68,52 @@ memberEmail.addEventListener("input", function () {
     const regEx = /^[A-Za-z\d\-\_]{4,}@[가-힣\w\-\_]+(\.\w+){1,3}$/;
     // .다음에 단어 반복이 1~3번
     if (regEx.test(memberEmail.value)) {
-        emailMessage.innerText = "유효한 이메일 형식입니다.";
-        emailMessage.classList.add("confirm");
-        emailMessage.classList.remove("error");
+        // emailMessage.innerText = "유효한 이메일 형식입니다.";
+        // emailMessage.classList.add("confirm");
+        // emailMessage.classList.remove("error");
 
-        // 이메일 유효성 검사 결과 저장 객체에 true 저장
-        checkObj.memberEmail = true;
+        // // 이메일 유효성 검사 결과 저장 객체에 true 저장
+        // checkObj.memberEmail = true;
+
+        //이메일이 유효한 경우 중복검사
+        //중복검사를 위한 ajax 요청
+        //jQuery를 이용한 ajax코드 -> $.ajax(JS객체)
+        //$ : jQuery 기능을 사용하기 위한 객체
+        //$.ajax() : jQuery에서 제공하는 ajax라는 함수
+        //JS객체 : {key:value, key:value, ...}
+
+        //$.ajax()의 매개변수로 전달되는 JS객체는 반드시 "url"이라는 key를 포함해야하며 
+        //선택적으로 data, type, dataType, success, error, complete, async 등을 포함할 수 있다.
+
+        $.ajax({
+            url: "/emailDupCheck",                      //비동기 통신을 진행할 서버 요청 주소
+            data: { "memberEmail": memberEmail.value }, //JS -> 서버에 전달할 데이터(값)
+            type: "GET",                                //서버에 전달할 요청 방식(보통GET, POST)
+            success: (result) => {//서버의 응답이 성공적으로 왔을 때 실행할 콜백함수 
+                //result : 서버가 응답한 데이터(매개변수 이름은 자유롭게 지정 가능)
+                console.log(result);
+                if (result == 0) { //중복 아님
+                    emailMessage.innerText = "사용 가능한 이메일입니다.";
+                    emailMessage.classList.add("confirm");
+                    emailMessage.classList.remove("error");
+
+                    checkObj.memberEmail = true;
+
+                } else { //중복
+                    emailMessage.innerText = "이미 사용중인 이메일입니다.";
+                    emailMessage.classList.add("error");
+                    emailMessage.classList.remove("confirm");
+
+                    checkObj.memberEmail = false;
+                }
+            },
+            error: (error) => {//서버의 응답이 실패했을 때 실행할 콜백함수
+                console.log("ajax 통신 실패 : " + error);
+            },
+            complete: () => {//서버의 응답이 왔을 때(sucess, error 수행 여부 관계 없이) 실행할 콜백함수
+                console.log("중복 검사 수행 완료");
+            }
+        });
     } else {
         emailMessage.innerText = "유효하지 않은 이메일 형식입니다.";
         emailMessage.classList.add("error");
@@ -186,10 +229,32 @@ memberNickname.addEventListener("input", function () {
     const regEx = /^[가-힣\w]{2,10}$/;
     if (regEx.test(memberNickname.value)) { //유효한 경우
         // 닉네임 중복 검사 추가예정
-        nicknameMessage.innerText = "유효한 닉네임입니다.";
-        nicknameMessage.classList.add("confirm");
-        nicknameMessage.classList.remove("error");
-        checkObj.memberNickname = true;
+        const param = { "memberNickname": memberNickname.value };
+        $.ajax({
+            url: "/nicknameDupCheck",
+            data: param,
+            type: "get", //미작성시 get방식으로 전송
+            dataType: "json",
+            success: (res) => {
+                //매개변수 res == 서버 비동기 통신 응답 데이터
+                console.log("res : " + res);
+                if (res == 0) {
+                    nicknameMessage.innerText = "사용 가능한 닉네임입니다.";
+                    nicknameMessage.classList.add("confirm");
+                    nicknameMessage.classList.remove("error");
+                    checkObj.memberNickname = true;
+                } else {
+                    nicknameMessage.innerText = "이미 사용중인 닉네임입니다.";
+                    nicknameMessage.classList.add("error");
+                    nicknameMessage.classList.remove("confirm");
+                    checkObj.memberNickname = false;
+                }
+            },
+            error: (err) => {
+                console.log("닉네임 중복 검사 실패");
+            },
+            complete: tempFn
+        });
     } else { // 유효하지 않은 경우
         nicknameMessage.innerText = "유효한 닉네임이 아닙니다.";
         nicknameMessage.classList.add("error");
@@ -199,6 +264,13 @@ memberNickname.addEventListener("input", function () {
 
 });
 
+function tempFn() {
+    console.log("닉네임 검사완료");
+}
+
+//tempFn(); tempFn 차이 확인
+//tempFn(); // 함수 호출
+//tempFn; // 함수 자체를 참조
 
 //************************************************************************************* */
 // 전화번호 유효성 검사
@@ -239,3 +311,103 @@ memberTel.addEventListener("input", function () {
     }
 });
 
+
+
+
+//-------------------------------------------------------------------------------------
+// 이메일 인증코드 발송 / 확인
+// 인증번호 발송
+const sendAuthKeyBtn = document.getElementById("sendAuthKeyBtn");
+const authKeyMessage = document.getElementById("authKeyMessage");
+let authTimer;
+let authMin = 4;
+let authSec = 59;
+
+
+sendAuthKeyBtn.addEventListener("click", function () {
+    authMin = 4;
+    authSec = 59;
+
+    checkObj.authKey = false;
+
+    if (checkObj.memberEmail) { // 중복이 아닌 이메일인 경우
+        $.ajax({
+            url: "/sendEmail/signUp",
+            data: { "email": memberEmail.value },
+            success: (result) => {
+                if (result > 0) {
+                    console.log("인증 번호가 발송되었습니다.")
+                } else {
+                    console.log("인증번호 발송 실패")
+                }
+            }, error: () => {
+                console.log("이메일 발송 중 에러 발생");
+            }
+        })
+
+        alert("인증번호가 발송 되었습니다.");
+
+        authKeyMessage.innerText = "05:00";
+        authKeyMessage.classList.remove("confirm");
+
+        authTimer = window.setInterval(() => {
+
+            authKeyMessage.innerText = "0" + authMin + ":" + (authSec < 10 ? "0" + authSec : authSec);
+            // 남은 시간이 0분 0초인 경우
+            if (authMin == 0 && authSec == 0) {
+                checkObj.authKey = false;
+                clearInterval(authTimer);
+                return;
+            }
+            // 0초인 경우
+            if (authSec == 0) {
+                authSec = 60;
+                authMin--;
+            }
+            authSec--; // 1초 감소
+        }, 1000)
+
+    } else {
+        alert("중복되지 않은 이메일을 작성해주세요.");
+        memberEmail.focus();
+    }
+});
+
+
+// 인증 확인
+const authKey = document.getElementById("authKey");
+const checkAuthKeyBtn = document.getElementById("checkAuthKeyBtn");
+
+checkAuthKeyBtn.addEventListener("click", function () {
+
+    if (authMin > 0 || authSec > 0) { // 시간 제한이 지나지 않은 경우에만 인증번호 검사 진행
+
+        $.ajax({
+            url: "/sendEmail/checkAuthKey",
+            data: { "inputKey": authKey.value },
+            success: (result) => {
+
+                if (result > 0) {
+                    clearInterval(authTimer);
+                    authKeyMessage.innerText = "인증되었습니다.";
+                    authKeyMessage.classList.add("confirm");
+                    checkObj.authKey = true;
+
+                } else {
+                    alert("인증번호가 일치하지 않습니다.")
+                    checkObj.authKey = false;
+                }
+            },
+
+            error: () => {
+                console.log("인증코드 확인 오류");
+            }
+
+        })
+
+    } else {
+        alert("인증 시간이 만료되었습니다. 다시 시도해주세요.")
+    }
+
+
+});
