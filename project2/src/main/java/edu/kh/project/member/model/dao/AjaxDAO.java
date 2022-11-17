@@ -31,12 +31,16 @@ public class AjaxDAO {
 		return sqlSession.selectOne("ajaxMapper.nicknameDupCheck",  memberNickname);
 	}
 
+	/**이메일로 회원 조회 DAO
+	 * @param email
+	 * @return
+	 */
 	public Member selectEmail(String email) {
 		
 		return sqlSession.selectOne("ajaxMapper.selectEmail", email);
 	}
 
-	/**회원 목록 조회
+	/**회원 목록 조회 DAO
 	 * @return
 	 */
 	public java.util.List<Member> selectMemberList() {
