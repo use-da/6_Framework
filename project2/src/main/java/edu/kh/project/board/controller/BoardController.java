@@ -41,6 +41,11 @@ public class BoardController {
 		return "board/boardList"; // forward
 	}
 
-
+	@GetMapping("/board/{boardCode}/{boardNo}")
+	public String boardDetail(
+			@PathVariable("boardNo")int boardNo, Model model) {
+		
+		return "board/boardDetail";
+	}
 
 }
