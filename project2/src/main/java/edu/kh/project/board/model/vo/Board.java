@@ -30,5 +30,5 @@ public class Board {
     
     
     //댓글 목록
-    List<Comment>comment;
+    List<Comment>commentList;
 }

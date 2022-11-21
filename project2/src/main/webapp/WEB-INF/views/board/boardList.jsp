@@ -63,10 +63,10 @@
 															<c:if test="${not empty board.thumbnail}">
 																<img class="list-thumbnail" src="${board.thumbnail}">
 															</c:if>
-															<%-- /board/1/1500 /board/{boardCode}/{boardNo}
-																컨트롤러PathVariable -> boardCode --%>
+
+															<%-- /board/1/1500/?cp=1 컨트롤러PathVariable -> boardCode --%>
 																<a
-																	href="/board/${boardCode}/${board.boardNo}">${board.boardTitle}</a>
+																	href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}">${board.boardTitle}</a>
 																[${board.commentCount}]
 													</td>
 													<td>${board.memberNickname}</td>
@@ -102,6 +102,7 @@
 											<!-- 현재 보고있는 페이지 -->
 											<li><a class="current">${i}</a></li>
 										</c:when>
+
 										<c:otherwise>
 											<!-- 현재 페이지를 제외한 나머지 -->
 											<li><a href="/board/${boardCode}?cp=${i}">${i}</a></li>
@@ -136,8 +137,8 @@
 
 				<!-- 썸네일 클릭 시 모달창 출력 board css  -->
 				<div class="modal">
-					<span id="modal-close">&times;</span> <img id="modal-image"
-						src="/resources/images/board/20221116105843_00001.gif">
+					<span id="modal-close">&times;</span>
+					<img id="modal-image" src="/resources/images/board/20221116105843_00001.gif">
 				</div>
 
 

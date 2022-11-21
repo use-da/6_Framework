@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.kh.project.board.model.dao.BoardDAO;
 import edu.kh.project.board.model.vo.Board;
@@ -48,7 +49,35 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board selectBoardDetail(int boardNo) {
 		
-		
 		return dao.selectBoardDetail(boardNo);
+	}
+
+	//조회수 증가
+	@Transactional //단일 DML구문일 때에는 성능적 하락 때문에 안 적어도 상관 없다
+	@Override
+	public int updateReadCount(int boardNo) {
+		
+		return dao.updateReadCount(boardNo);
+	}
+
+	//좋아요여부 체크
+	@Override
+	public int boardLikeCheck(Map<String, Object> map) {
+		
+		return dao.boardLikeCheck(map);
+	}
+
+	//좋아요 증가
+	@Override
+	public int boardLikeUp(Map<String, Object> paramMap) {
+
+		return dao.boardLikeUp(paramMap);
+	}
+
+	//좋아요 감소
+	@Override
+	public int boardLikeDown(Map<String, Object> paramMap) {
+		
+		return dao.boardLikeDown(paramMap);
 	}
 }
