@@ -125,7 +125,6 @@
 
         <!-- 버튼 영역-->
         <div class="board-btn-area">
-
             <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
             <c:if test="${loginMember.memberNo == board.memberNo }">
                 <button id="updateBtn">수정</button>

@@ -4,7 +4,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.kh.project.member.model.service.List;
 import edu.kh.project.member.model.vo.Member;
 
 @Repository //DB연결하는 역할 + bean등록

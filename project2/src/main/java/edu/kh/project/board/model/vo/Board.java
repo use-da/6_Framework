@@ -25,6 +25,8 @@ public class Board {
     private int memberNo;
     private String profileImage;
     
+    private int boardCode; //조회할 때 쓰지 않기 때문에 resultMap에 담지 않아도 된다
+    
     //이미지 목록
     List<BoardImage>imageList;
     
