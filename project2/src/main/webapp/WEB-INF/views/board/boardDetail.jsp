@@ -40,7 +40,16 @@
             <c:if test="${not empty board.profileImage}">
                 <img src="${board.profileImage}">
             </c:if>
-            <span>${board.memberNickname}</span>
+            
+            <!-- 채팅방 입장 ---------------------------------------------------------------------------->
+            <c:choose>
+                <c:when test="${empty loginMember or loginMember.memberNo == board.memberNo}">
+                    <span>${board.memberNickname}</span>
+                </c:when>
+                <c:otherwise>
+                    <span><a href="/chatting/enter?targetNo=${board.memberNo}">${board.memberNickname}</a></span>
+                </c:otherwise>
+            </c:choose>
 
             <!-- 좋아요 -->
             <span class="like-area">
@@ -156,6 +165,7 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="/resources/js/board/board.js"></script>
+    <script src="/resources/js/board/comment.js"></script>
     
 </body>
 

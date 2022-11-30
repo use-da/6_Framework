@@ -270,9 +270,33 @@ public class BoardServiceImpl implements BoardService {
 			}
 		}
 		
-		
-		
-		
 		return result;
+	}
+
+	//검색 목록 조회
+	@Override
+	public Map<String, Object> selectBoardList(Map<String, Object> pm, int cp) {
+		//1. 검색 조건이 일치하는 전체 게시글 수 조회(단, 삭제 제외)
+		int listCount = dao.getListCount(pm);
+				
+		//2. 전체 게시글 수 + cp(현재 페이지)를 이용해 페이징 처리 객체 생성
+		Pagination pagination = new Pagination(listCount, cp);
+				
+		//3. 페이징 처리객체를 이용해 게시글 목록 조회
+		List<Board>boardList = dao.selectBoardList(pagination,pm);
+				
+		//2.3의 결과를 Map에 담아 return
+		Map<String, Object>map = new HashMap<String,Object>();
+		map.put("pagination", pagination);
+		map.put("boardList", boardList);
+				
+		return map;
+		
+	}
+
+	@Override
+	public List<String> selectImageList() {
+		
+		return dao.selectImageList();
 	}
 }

@@ -46,3 +46,30 @@
         });
     }
 })();
+
+
+// 검색을 한 경우 검색창에 검색key, query 남겨놓기
+(()=>{
+    const select = document.getElementById("search-key");
+    const input = document.getElementById("search-query");
+    const option = document.querySelectorAll("#search-key > option");
+
+//쿼리스트링에서 원하는 값만 얻어오기
+    if(select != null){
+        const params = new URL(location.href).searchParams; //주소에서 쿼리스트링만 분리한 객체
+        const key = params.get("key");                      //key값 얻어오기
+        const query = params.get("query");                  //query값 얻어오기
+
+        // input에 이전 검색어를 값으로 추가
+        input.value = query;
+
+        // select에 이전 검색한 key값과 일치하는 option태그에 selected 속성 추가
+        for(let op of option){
+            //option의 value값과 key값이 같으면
+            if(op.value == key){
+                //op.setAttribute("selected", true);
+                op.selected = true;
+            }
+        }
+    }
+})();
